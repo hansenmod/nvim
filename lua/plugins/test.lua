@@ -99,14 +99,15 @@ return {
     }
 },
 {
-    'lervag/vimtex',
-    config = function()
-        vim.g.vimtex_view_method = 'zathura' -- Use Zathura as the PDF viewer
-        vim.g.vimtex_compiler_method = 'latexmk'
-        vim.g.vimtex_quickfix_mode = 0
-    end
-}
+  "lervag/vimtex",
+  lazy = false,     -- we don't want to lazy load VimTeX
+  -- tag = "v2.15", -- uncomment to pin to a specific release
+  init = function()
+    -- VimTeX configuration goes here, e.g.
+    vim.g.vimtex_view_method = "zathura"
 
+  end
+}
   -- local plugins can also be configured with the dev option.
   -- This will use {config.dev.path}/noice.nvim/ instead of fetching it from GitHub
   -- With the dev option, you can easily switch between the local and installed version of a plugin

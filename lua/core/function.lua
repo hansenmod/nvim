@@ -3,3 +3,4 @@ function RunPythonInHSplit()
     vim.cmd("split")                 -- Create a horizontal split
     vim.cmd("terminal python3 %")    -- Open terminal and run the current file
 end
+	
