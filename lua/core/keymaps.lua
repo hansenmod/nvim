@@ -68,3 +68,11 @@ keymap.set("n","<LEADER>e","<C-w>j")
 keymap.set("n","<LEADER>gg",":LazyGit<CR>") 
 
 keymap.set("n","r",":lua RunPythonInHSplit()<CR>")
+
+
+
+keymap.set("n", "<localleader>k", "<Plug>(YCMToggleInlayHints)")
+
+keymap.set("i", "<C-e>", "pumvisible() ? '<C-n>' : '<Tab>'", { expr = true, noremap = true, silent = true })
+keymap.set("i", "<C-u>", "pumvisible() ? '<C-p>' : '<S-Tab>'", { expr = true, noremap = true, silent = true} )
+
