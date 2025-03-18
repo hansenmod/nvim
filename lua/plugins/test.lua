@@ -1,4 +1,4 @@
-return {
+	return {
 	-- the colorscheme should be available when starting Neovim
 	{
 		"folke/tokyonight.nvim",
@@ -135,27 +135,24 @@ return {
 		"stevearc/conform.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					-- Conform will run multiple formatters sequentially
-					python = { "isort", "black" },
-					-- You can customize some of the format options for the filetype (:help conform.format)
-					rust = { "rustfmt", lsp_format = "fallback" },
-					-- Conform will run the first available formatter
-					javascript = { "prettierd", "prettier", stop_after_first = true },
-				},
-				format_on_save = {
-					-- These options will be passed to conform.format()
-					timeout_ms = 500,
-					lsp_format = "fallback",
+			require("config_plugins.conform")
+		end,
+	},
+		{
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					},
 				},
 			})
 		end,
-	}, -- local plugins can also be configured with the dev option.
-	{
-		"williamboman/mason.nvim",
 	},
-	-- This will use {config.dev.path}/noice.nvim/ instead of fetching it from GitHub
-	-- With the dev option, you can easily switch between the local and installed version of a plugin
+	{
+		"mason-org/mason-registry",
+	},
 }
