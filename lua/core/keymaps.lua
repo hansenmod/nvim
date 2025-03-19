@@ -9,6 +9,7 @@ keymap.set("v", "i", "l")
 keymap.set("n", "=", "n")
 keymap.set("n", "-", "N")
 
+keymap.set("n","f","e")
 keymap.set("v", "Y", '"+y')
 
 keymap.set("n", "u", "k")
@@ -37,10 +38,6 @@ keymap.set("n", "k", "i")
 
 keymap.set("n", "q", ":q!<CR>")
 keymap.set("n", "Q", ":wq!<CR>")
-
-keymap.set("n", "<leader>l", ":e $HOME/.config/nvim/init.lua<CR>")
-
-keymap.set("n", "<leader>ll", ":e $HOME/.config/nvim/lua/core/coc.lua<CR>")
 
 keymap.set("n", "W", ":w<CR>")
 
@@ -71,4 +68,33 @@ keymap.set("n", "<leader>b", "", {
 			async = true,
 			lsp_fallback = true,
 		})
-	end})
+	end,
+})
+
+keymap.set("n", "tn", ":-tabnext<CR>")
+keymap.set("n", "ti", ":+tabnext<CR>")
+
+keymap.set("n", "tu", ":tabe<CR>")
+keymap.set("n", "tU", ":tab split<CR>")
+
+keymap.set("n", "<C-t>", ":FZF<CR>")
+
+keymap.set("n", "<C-t>", ":FZF<CR>")
+
+keymap.set("n", "<leader>n", function()
+	local filename = vim.fn.input("New file name: ")
+	if filename ~= "" then
+		vim.fn.mkdir(vim.fn.fnamemodify(filename, ":h"), "p") -- 创建父目录
+		vim.cmd("tabe ")
+		vim.cmd("e " .. filename) -- 创建并打开文件
+	else
+		print("No file name provided.")
+	end
+end, { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "tex",
+	callback = function()
+		vim.keymap.set("n", "r", ":VimtexCompile<CR>", { noremap = true, silent = true, buffer = true })
+	end,
+})
