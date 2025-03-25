@@ -1,14 +1,14 @@
 require("core.keymaps")
 require("config.lazy")
 require("core.nvim_conf")
-	require("core.coc")
+require("core.coc")
 require("core.function")
 local status, mason = pcall(require, "mason")
 if not status then
 	vim.notify("not fonunt mason")
 	return
 end
-local list = {"stylua","latexindent","isort", "black"}
+local list = { "stylua", "latexindent", "isort", "black" }
 local mason_registry = require("mason-registry")
 mason.setup()
 local ensure_installed = function()

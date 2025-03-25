@@ -9,7 +9,8 @@ keymap.set("v", "i", "l")
 keymap.set("n", "=", "n")
 keymap.set("n", "-", "N")
 
-keymap.set("n","f","e")
+keymap.set("n", "f", "e")
+keymap.set("v", "h", "e")
 keymap.set("v", "Y", '"+y')
 
 keymap.set("n", "u", "k")
@@ -20,6 +21,10 @@ keymap.set("n", "E", "10j")
 keymap.set("n", "I", "10l")
 keymap.set("n", "U", "10k")
 keymap.set("n", "N", "10h")
+keymap.set("v", "E", "10j")
+keymap.set("v", "I", "10l")
+keymap.set("v", "U", "10k")
+keymap.set("v", "N", "10h")
 
 keymap.set("n", "<C-u>", "10<C-y>")
 keymap.set("n", "<C-e>", "10<C-e>")
@@ -81,7 +86,7 @@ keymap.set("n", "<C-t>", ":FZF<CR>")
 
 keymap.set("n", "<C-t>", ":FZF<CR>")
 
-keymap.set("n", "<leader>n", function()
+keymap.set("n", "<leader>nn", function()
 	local filename = vim.fn.input("New file name: ")
 	if filename ~= "" then
 		vim.fn.mkdir(vim.fn.fnamemodify(filename, ":h"), "p") -- 创建父目录
@@ -98,3 +103,20 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "r", ":VimtexCompile<CR>", { noremap = true, silent = true, buffer = true })
 	end,
 })
+
+keymap.set("n", "<leader>z", function()
+	local dir = vim.fn.input("Enter directory: ")
+	vim.cmd("cd " .. dir)
+	vim.cmd("pwd")
+end, { noremap = true, silent = true })
+keymap.set("n", "<leader>zz", function()
+  vim.cmd("cd %:p:h")
+  print("Changed directory to " .. vim.fn.expand("%:p:h"))
+end, { desc = "Change to current file directory" })
+
+keymap.set("n", "<leader>lg", function()
+  vim.cmd("cd %:p:h")  -- 先切换到当前文件所在目录
+  vim.cmd("LazyGit")    -- 启动 lazygit
+end, { desc = "Open LazyGit in current file directory" })
+
+

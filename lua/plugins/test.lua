@@ -1,4 +1,4 @@
-	return {
+return {
 	-- the colorscheme should be available when starting Neovim
 	{
 		"folke/tokyonight.nvim",
@@ -138,7 +138,7 @@
 			require("config_plugins.conform")
 		end,
 	},
-		{
+	{
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({
@@ -156,9 +156,19 @@
 		"mason-org/mason-registry",
 	},
 	{
-		"junegunn/fzf.vim"
+		"junegunn/fzf.vim",
 	},
 	{
-		"junegunn/fzf"
+		"junegunn/fzf",
+	},
+	{
+		"jiaoshijie/undotree",
+		dependencies = "nvim-lua/plenary.nvim",
+		config = function()
+			require("config_plugins.undotree")
+		end,
+		keys = { -- load the plugin only when using it's keybinding:
+			{ "<leader>uu", "<cmd>lua require('undotree').toggle()<cr>" },
+		},
 	},
 }
