@@ -426,4 +426,16 @@ return {
 			end)
 		end,
 	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			indent = { char = "│" }, -- 可以换成 "┊"、"⎸" 等
+			scope = {
+				enabled = true,
+				show_start = true,
+				show_end = false,
+			},
+		},
+	},
 }
