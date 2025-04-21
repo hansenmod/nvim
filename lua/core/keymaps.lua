@@ -9,7 +9,7 @@ keymap.set("v", "i", "l")
 keymap.set("n", "=", "n")
 keymap.set("n", "-", "N")
 
-keymap.set("n", "f", "e")
+keymap.set("n", "h", "e")
 keymap.set("v", "h", "e")
 keymap.set("v", "Y", '"+y')
 
@@ -119,4 +119,15 @@ keymap.set("n", "<leader>lg", function()
   vim.cmd("LazyGit")    -- 启动 lazygit
 end, { desc = "Open LazyGit in current file directory" })
 
+keymap.set('n', '<leader>gd', ':CocCommand python.navigateToSource<CR>')
+keymap.set("n", "<F9>", function() require("dap").toggle_breakpoint() end)
 
+
+keymap.set("n", "<F5>", function() require("dap").continue() end)
+
+
+keymap.set("n", "<F10>", function() require("dap").step_over() end)
+keymap.set("n", "<F11>", function() require("dap").step_into() end)
+keymap.set("n", "<F12>", function() require("dap").step_out() end)
+keymap.set("n", "<S-F5>", function() require("dap").terminate() end)
+keymap.set("n", "<leader>tt", ":NvimTreeToggle<cr>", { noremap = true, silent = true })

@@ -3,5 +3,6 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		tex = { "latexindent" ,"llf"},
+		json={'jq'}
 	},
 })
